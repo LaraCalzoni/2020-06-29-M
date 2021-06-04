@@ -38,7 +38,7 @@ public class Director {
 
 	@Override
 	public String toString() {
-		return id + " - " + firstName + " " + lastName;
+		return firstName + " " + lastName;
 	}
 
 	@Override
