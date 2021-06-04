@@ -3,6 +3,7 @@ package it.polito.tdp.imdb.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +37,7 @@ public class Model {
 		//aggiungo archi
 		for( Adiacenza a : dao.getAdiacenze(anno, idMap)) {
 			//if(this.grafo.containsVertex(a.getD1()) && this.grafo.containsVertex(a.getD2())) {
-				Graphs.addEdgeWithVertices(grafo, a.getD1(), a.getD2(), a.getPeso());
+				Graphs.addEdge(grafo, a.getD1(), a.getD2(), a.getPeso());
 			
 			//}
 		}
@@ -45,13 +46,13 @@ public class Model {
 		System.out.println("GRAFO CREATO con "+grafo.vertexSet().size()+" vertici e "+grafo.edgeSet().size()+" archi.");
 	}
 	
-	public Graph <Director,DefaultWeightedEdge> getGrafo(){
+	public Graph <Director, DefaultWeightedEdge> getGrafo(){
 		return this.grafo;
 	}
 	
 	public List <DirectorAdiacente> getDirectorAdiacenti(Director partenza){
-		 List <Director> vicini = Graphs.neighborListOf(this.getGrafo(), partenza);
-		 List <DirectorAdiacente> result = new ArrayList<>();
+		
+		 List <DirectorAdiacente> result = new LinkedList<>();
 		 for(DefaultWeightedEdge e: this.grafo.edgesOf(partenza)) {
 				
 				int peso = (int) this.grafo.getEdgeWeight(e);
